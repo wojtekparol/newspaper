@@ -1,7 +1,7 @@
 .container
-  %ul.list-
+  %ul.list-group
     - @articles.each do |article|
-      %li
+      %li.list-group-item
         %h3= article.title
         %p= article.text
-  = link_to 'Nowy', new_article_path
+  = link_to 'Nowy', new_article_path, class: "btn btn-primary"
