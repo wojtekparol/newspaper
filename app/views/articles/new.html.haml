@@ -1,0 +1,15 @@
+.container-fluid
+  .col-md-5.col-md-offset-3
+    = @article.errors.full_messages.each do |msg|
+      %li
+        = msg
+    = form_for @article do |f|
+      %h3 Nowy artykuł
+      %p
+        = f.label :title, 'Tytuł'
+        = f.text_field :title, placeholder: "wpisz tytuł artukułu"
+      %p
+        = f.label :text, 'Treść'
+        = f.text_area :text, rows: "10"
+      %p
+        = f.submit 'Dodaj!', class: "btn btn-primary"
