@@ -17,6 +17,25 @@ class ArticlesController < ApplicationController
     end
   end
   
+  def edit
+    @article = Article.find(params[:id])
+  end
+  
+  def update
+    @article = Article.find(params[:id])
+    if @article.update(article_params)
+      redirect_to articles_path, notice: "Udało się."
+    else
+      render 'edit'
+    end
+  end
+  
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+    redirect_to articles_path, notice: "Pomyślnie usunięto."
+  end
+  
   private
   
   def article_params

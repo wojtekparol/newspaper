@@ -1,7 +1,14 @@
 .container
+  - if alert
+    .alert.alert-danger
+      = alert
   %ul.list-group
     - @articles.each do |article|
       %li.list-group-item
         %h3= article.title
+        = link_to article_path(article), method: :delete, data: { confirm: "Na pewno usunąć?" }, class: 'btn btn-danger pull-right' do
+          %span &times;
+          Usuń
+        = link_to 'Edytuj', edit_article_path(article), class: 'btn btn-info pull-right'        
         %p= article.text
   = link_to 'Nowy', new_article_path, class: "btn btn-primary"
