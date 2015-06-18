@@ -11,9 +11,10 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     if @article.save
-      redirect_to root_path
+      redirect_to root_path, notice: "Dodano pomyślnie."
     else
-      redirect_to new_article_path, alert: "Czegoś brakuje."
+      flash.now[:alert] = "Czegoś brakuje."
+      render 'new'
     end
   end
   
@@ -24,7 +25,7 @@ class ArticlesController < ApplicationController
   def update
     @article = Article.find(params[:id])
     if @article.update(article_params)
-      redirect_to articles_path, notice: "Udało się."
+      redirect_to articles_path, notice: "Udało się zmienić."
     else
       render 'edit'
     end

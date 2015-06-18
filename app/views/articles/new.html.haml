@@ -1,9 +1,9 @@
 .container-fluid
   .col-md-4.col-md-offset-4
-    - if @article.errors.any?
-      = @article.errors.full_messages.each do |msg|
-        %li
-          = msg
+    - if alert
+      .alert.alert-danger
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+        = alert
     = form_for @article do |f|
       %h3 Nowy artykuł
       %p
