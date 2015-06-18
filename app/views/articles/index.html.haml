@@ -2,10 +2,13 @@
   - if alert
     .alert.alert-danger
       = alert
+  - if notice
+    .alert.alert-success
+      = notice
   %ul.list-group
     - @articles.each do |article|
       %li.list-group-item
-        %h3= article.title
+        %h4= article.title
         = link_to article_path(article), method: :delete, data: { confirm: "Na pewno usunąć?" }, class: 'btn btn-danger pull-right' do
           %span &times;
           Usuń

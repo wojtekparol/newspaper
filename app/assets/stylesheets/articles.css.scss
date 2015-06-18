@@ -1,7 +1,11 @@
 @import 'bootstrap';
 
-#new_article h3{
+h3{
   text-align: center;
+}
+h4{
+  display: inline-block;
+  background-color: rgba(230,230,230,0.8);
 }
 input,textarea{
   width: 100%;
