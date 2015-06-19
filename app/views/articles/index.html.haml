@@ -1,4 +1,17 @@
-.container
+.container-fluid
+  %nav.navbar.navbar-default
+    .container-fluid
+      %ul.nav.navbar-nav.navbar-right
+        - if admin_signed_in?
+          %li
+            = link_to 'Dodaj artykuł', new_article_path
+          %li
+            = link_to 'Wyloguj się', destroy_admin_session_path, method: :delete
+        - else
+          %li
+            = link_to 'Zaloguj się', new_admin_session_path
+          %li
+            = link_to 'Rejestracja', new_admin_registration_path
   - if alert
     .alert.alert-danger
       %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
@@ -14,4 +27,6 @@
           = link_to article_path(article.id), class: "article-link" do
             = article.title       
         %p= article.text
-  = link_to 'Nowy', new_article_path, class: "btn btn-primary"
+  = link_to new_article_path, class: "btn btn-primary" do
+    Nowy
+    %span.glyphicon.glyphicon-plus
