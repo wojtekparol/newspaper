@@ -1,7 +1,11 @@
 class ArticlesController < ApplicationController
   
   def index
-    @articles = Article.all
+    @articles = Article.order(updated_at: :desc)
+  end
+  
+  def show
+    @article = Article.find(params[:id])
   end
   
   def new
@@ -9,7 +13,7 @@ class ArticlesController < ApplicationController
   end
   
   def create
-    @article = Article.new(article_params)
+    @article = Article.new(article_params)    
     if @article.save
       redirect_to root_path, notice: "Dodano pomyślnie."
     else
@@ -23,7 +27,7 @@ class ArticlesController < ApplicationController
   end
   
   def update
-    @article = Article.find(params[:id])
+    @article = Article.find(params[:id])    
     if @article.update(article_params)
       redirect_to articles_path, notice: "Udało się zmienić."
     else
